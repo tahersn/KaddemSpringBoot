@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.demo.entities.Competence;
 import tn.esprit.demo.entities.Etudiant;
 import tn.esprit.demo.services.IEtudiantService;
 
@@ -67,5 +68,9 @@ public class EtudientRESTcontroller {
 
                Etudiant e=etudientImpl.findByPrenomEAndNomE(nomE,prenomE);
         return e;
+    }
+    @PutMapping("/assignC/{idE}/{idC}")
+    public void AddAndAssignCompetence(@PathVariable("idE")Long idE, @PathVariable("idC") Long idC){
+         etudientImpl.AssignCompetenceToStudent(idE,idC);
     }
 }

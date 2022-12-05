@@ -1,22 +1,30 @@
 package tn.esprit.demo.services;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tn.esprit.demo.entities.Competence;
 import tn.esprit.demo.entities.Contrat;
 import tn.esprit.demo.entities.Equipe;
 import tn.esprit.demo.entities.Etudiant;
+import tn.esprit.demo.repositories.ICompetenceRepository;
 import tn.esprit.demo.repositories.IContratRepository;
 import tn.esprit.demo.repositories.IEquipeRepository;
 import tn.esprit.demo.repositories.IEtudRepository;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
 public class EtudiantImpl implements IEtudiantService {
+    @Autowired
     private final IEtudRepository etudRepository;
     private final IContratRepository contratRepository;
     private final IEquipeRepository equipeRepository;
+    @Autowired
+    private final ICompetenceRepository competenceRepository;
 
 
     @Override
@@ -82,6 +90,20 @@ public class EtudiantImpl implements IEtudiantService {
         return etudRepository.retrieveEtudientparoption(Option);
     }*/
 
+    @Override
+    public void AssignCompetenceToStudent(Long idE, Long idC) {
+       Competence c = competenceRepository.findById(idC).orElse(null);
+       Etudiant e =etudRepository.findById(idE).orElse(null);
+       System.out.println(c.getNomCompetnce());
+       System.out.println(e.getNomE());
+      /* if (e.getCompetences()==null){
+            Set<Competence> Competences =new HashSet<>();
+            Competences.add(c);
+        }else*/
+            e.getCompetences().add(c);
+        etudRepository.save(e);
+
+    }
 
 
 
