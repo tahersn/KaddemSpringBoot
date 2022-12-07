@@ -11,5 +11,6 @@ public interface IEquipeService  {
     public Equipe retrieveEquipe (Long idEquipe);
     public Equipe updateEquipe (Equipe equipe);
     public Equipe addEquipeAndAssign(Equipe equipe);
+    public  void deleteEquipe(Long idEquipe);
 
 }

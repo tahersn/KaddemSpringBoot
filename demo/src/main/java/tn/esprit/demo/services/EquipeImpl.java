@@ -65,4 +65,9 @@ public class EquipeImpl implements IEquipeService{
         return equipe;
     }
 
+    @Override
+    public void deleteEquipe(Long idEquipe) {
+        equipeRepository.deleteById(idEquipe);
+    }
+
 }

@@ -48,4 +48,10 @@ public class EquipeRESTcontroller {
     public Equipe AddAndAssignEquipe (Equipe equipe){
         return equipeImpl.addEquipeAndAssign(equipe);
     }
+    @Operation(description = "Supprimer une equipe par ID")
+    @DeleteMapping("/delete/{id}")
+    public String deleteStudent(@PathVariable("id")Long id){
+        equipeImpl.deleteEquipe(id);
+        return "deleted successfully";
+    }
 }
