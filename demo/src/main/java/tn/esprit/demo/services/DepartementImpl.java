@@ -26,7 +26,6 @@ public class DepartementImpl implements IDepartementService{
     public Departement AddDepartement(Departement departement) {
         return departmentRepository.save(departement);
     }
-
     @Override
     public List<Departement> RetrieveAllDepartement() {
         List<Departement> departements ;

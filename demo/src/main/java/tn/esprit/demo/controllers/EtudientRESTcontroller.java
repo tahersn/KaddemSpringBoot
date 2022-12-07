@@ -68,4 +68,8 @@ public class EtudientRESTcontroller {
                Etudiant e=etudientImpl.findByPrenomEAndNomE(nomE,prenomE);
         return e;
     }
+    @Operation(description = "modifier etudiant ")
+    @PutMapping("/update")
+    public Etudiant updateEtudiant(@RequestBody Etudiant etudiant){
+        return etudientImpl.addOrupdateEtudiant(etudiant);   }
 }
