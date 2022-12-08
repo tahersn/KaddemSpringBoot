@@ -40,6 +40,16 @@ public class CompetenceImpl implements ICompetenceService {
     public void deleteCompetenceById(Long idC) {
          competenceRepository.deleteById(idC);
     }
+    @Override
+    public Competence addAndAssignStudentToCompetence(Competence c) {
+        for (Etudiant e : c.getEtudiants()) {
+            Set<Competence> Competences = new HashSet<>();
+            e.setCompetences(Competences);
+            e.getCompetences().add(c);
+            etudiantRepository.save(e);
+        }
+        return competenceRepository.save(c);
+    }
 
 
 }

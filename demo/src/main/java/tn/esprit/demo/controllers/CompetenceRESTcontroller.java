@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.demo.entities.Competence;
+import tn.esprit.demo.entities.Etudiant;
 import tn.esprit.demo.services.ICompetenceService;
 
 import java.util.List;
@@ -39,6 +40,10 @@ public class CompetenceRESTcontroller {
     @GetMapping("/get/{idC}")
     public Competence RetrueveAllCompetnces(@PathVariable("idC")Long idC  ) {
         return competenceService.retrieveCompetenceById(idC);
+    }
+    @PostMapping("/addAndAssignCompetence")
+    public Competence AddAndAssignStToComp ( @RequestBody Competence c ){
+        return competenceService.addAndAssignStudentToCompetence(c);
     }
 
 

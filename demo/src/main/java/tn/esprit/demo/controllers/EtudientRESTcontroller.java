@@ -47,9 +47,8 @@ public class EtudientRESTcontroller {
 
     @Operation(description = "Delete Student")
     @DeleteMapping("/delete/{id}")
-    public  String DeleteEtudiant(@PathVariable("id") Long id) {
+    public  void DeleteEtudiant(@PathVariable("id") Long id) {
         etudientImpl.removeEtudiant(id);
-        return ("deleted succesfuly");
     }
 
      @Operation(description = "Afficher la liste des etudients ")
@@ -73,4 +72,11 @@ public class EtudientRESTcontroller {
     public void AddAndAssignCompetence(@PathVariable("idE")Long idE, @PathVariable("idC") Long idC){
          etudientImpl.AssignCompetenceToStudent(idE,idC);
     }
+
+    @PutMapping("/update")
+    public Etudiant updateStudent (@RequestBody Etudiant etudiant){
+        return  etudientImpl.addOrupdateEtudiant(etudiant);
+    }
+
+
 }

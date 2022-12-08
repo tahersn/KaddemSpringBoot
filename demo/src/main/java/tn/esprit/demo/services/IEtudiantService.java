@@ -23,5 +23,4 @@ public interface IEtudiantService {
     List<Etudiant> findByDepartement_IdDepart(Long idDepart);
    void AssignCompetenceToStudent(Long idE, Long idC);
 
-
 }
