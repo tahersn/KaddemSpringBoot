@@ -20,17 +20,19 @@ public class EtudiantImpl implements IEtudiantService {
 
 
     @Override
-    public Etudiant addOrupdateEtudiant(Etudiant etudiant) {
+    public Etudiant addEtudiant(Etudiant etudiant) {
+        return etudRepository.save(etudiant);
+    }
+    @Override
+    public Etudiant updateEtudiant(Etudiant etudiant) {
         return etudRepository.save(etudiant);
     }
 
 
-
     @Override
     public List<Etudiant> retrieveAllStudents() {
-        List<Etudiant> etudiants ;
-        etudiants = (List<Etudiant>) etudRepository.findAll();
-        return etudiants ;
+        return (List<Etudiant>) etudRepository.findAll();
+
     }
 
     @Override

@@ -14,6 +14,7 @@ public interface IDepartementService {
     public Departement UpdateDepartment (Departement departement , Long id);
 
 
+    Departement updateDepartement (Departement d);
 
 
     Departement RetrieveDepartement(Long idDepart);
@@ -21,7 +22,7 @@ public interface IDepartementService {
     void DeleteDepartement (Long idDepart);
 
     public void affecterEtudient (Long idEtudient,Long idDepartement);
+    public void affecterEmployee (Integer idEmp,Long idDepartement);
     List<Departement> retrieveDepartementsByUniversite(Long idUniv);
-
 
 }

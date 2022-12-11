@@ -7,6 +7,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.scheduling.annotation.Schedules;
 import org.springframework.stereotype.Service;
 import tn.esprit.demo.entities.Departement;
+import tn.esprit.demo.entities.Employe;
 import tn.esprit.demo.entities.Etudiant;
 import tn.esprit.demo.repositories.IDepartRepository;
 import tn.esprit.demo.repositories.IEquipeRepository;
@@ -20,7 +21,11 @@ import java.util.Objects;
 public class DepartementImpl implements IDepartementService{
     @Autowired
     private final IDepartRepository departmentRepository ;
+    @Autowired
     private final IEtudiantService etudientService;
+    @Autowired
+    private final IEmployeService employeService;
+
 
     @Override
     public Departement AddDepartement(Departement departement) {
@@ -29,8 +34,8 @@ public class DepartementImpl implements IDepartementService{
     @Override
     public List<Departement> RetrieveAllDepartement() {
         List<Departement> departements ;
-         departements = departmentRepository.findAll();
-    return departements ;
+        departements = departmentRepository.findAll();
+        return departements ;
     }
 
     @Override
@@ -41,6 +46,11 @@ public class DepartementImpl implements IDepartementService{
         }
 
         return departmentRepository.save(dep);
+    }
+    @Override
+    public Departement updateDepartement(Departement d) {
+        return departmentRepository.save(d);
+
     }
 
     @Override
@@ -59,7 +69,14 @@ public class DepartementImpl implements IDepartementService{
         Etudiant etudiant = etudientService.retrieveEtudiant(idEtudient);
         Departement departement = RetrieveDepartement(idDepartement);
         etudiant.setDepartement(departement);
-        etudientService.addOrupdateEtudiant(etudiant);
+        etudientService.addEtudiant(etudiant);
+    }
+    @Override
+    public void affecterEmployee (Integer idEmp,Long idDepartement){
+        Employe employe = employeService.retrieveEmploye(idEmp);
+        Departement departement = RetrieveDepartement(idDepartement);
+        employe.setDepartement(departement);
+        employeService.addEmploye(employe);
     }
 
     @Override
@@ -69,9 +86,9 @@ public class DepartementImpl implements IDepartementService{
 
 
     // @Scheduled(cron="*/15 * * * * *")
-   // public void bonjour(){
-      //  log.info("Hello");
-   // }
+    // public void bonjour(){
+    //  log.info("Hello");
+    // }
 
 }
 

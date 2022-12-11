@@ -10,6 +10,8 @@ import tn.esprit.demo.entities.Departement;
 import tn.esprit.demo.services.IDepartementService;
 
 import java.util.List;
+
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @Tag(name ="Departement management")
 @RestController
 @RequestMapping("/departement")
@@ -33,7 +35,7 @@ public class DepartementRESTcontroller {
 
     @Operation(description = "afficher un departement ")
 
-    @GetMapping("/{id}")
+    @GetMapping("get/{id}")
     public Departement RetrieveDepartement(@PathVariable("id") Long id){
         return departementImpl.RetrieveDepartement(id);
     }
@@ -43,17 +45,27 @@ public class DepartementRESTcontroller {
     public Departement UpdateDepartement(@RequestBody Departement departement , @PathVariable Long id ){
         return departementImpl.UpdateDepartment(departement,id);
     }
+
+    @PutMapping("/update")
+    public Departement updateDepartement(@RequestBody Departement d) {
+        return departementImpl.updateDepartement(d);
+    }
     @Operation(description = "Supprimer un departement ")
 
-    @DeleteMapping("/{id}")
-    public String deleteDepartement (@PathVariable Long id ){
+    @DeleteMapping("delete/{id}")
+    public String deleteDepartement (@PathVariable("id") Long id ){
         departementImpl.DeleteDepartement(id);
         return "Deleted successfully";
     }
-    @Operation(description = "assign student")
+
     @PutMapping("/assign/{idE}/{idDep}")
     public void assignStudent(@PathVariable("idDep") Long idDep,@PathVariable("idE")Long idE ){
         departementImpl.affecterEtudient(idE,idDep);
+    }
+
+    @PutMapping("/assignEmp/{idEmp}/{idDep}")
+    public void assignEmploye(@PathVariable("idDep") Long idDep,@PathVariable("idEmp")Integer idEmp ){
+        departementImpl.affecterEmployee(idEmp,idDep);
     }
 
     @GetMapping("/byUniv/{idUniv}")
