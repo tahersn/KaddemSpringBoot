@@ -8,13 +8,14 @@ import java.util.List;
 public interface IEtudiantService {
 
 
-    public Etudiant addOrupdateEtudiant(Etudiant etudiant);
+    public Etudiant addEtudiant(Etudiant etudiant);
+    public Etudiant updateEtudiant(Etudiant etudiant);
 
     List<Etudiant>  retrieveAllStudents ();
     public void removeEtudiant(Long id);
 
     public Etudiant retrieveEtudiant(Long id);
-   public  Etudiant addAndAssignEtudiantToEquipeAndContract(Etudiant e, Long idContrat, Long idEquipe);
+    public  Etudiant addAndAssignEtudiantToEquipeAndContract(Etudiant e, Long idContrat, Long idEquipe);
     /*List<Etudiant> retrieveEtudientparoption(String Option);*/
 
     Etudiant findByPrenomE(String pre);

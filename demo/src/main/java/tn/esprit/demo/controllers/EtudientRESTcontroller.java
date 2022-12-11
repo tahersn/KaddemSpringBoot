@@ -22,12 +22,12 @@ public class EtudientRESTcontroller {
     @Operation(description = "Ajouter un etudient")
     @PostMapping ("/add")
     public Etudiant AddStudent(@RequestBody Etudiant etudiant){
-        return etudientImpl.addOrupdateEtudiant(etudiant);
+        return etudientImpl.addEtudiant(etudiant);
     }
 
     @Operation(description = "Afficheer un etudient par son ID")
     @GetMapping("/get/{idEtudient}")
-    public Etudiant getetudient (Long id){
+    public Etudiant getetudient (@PathVariable("idEtudient")Long id){
         return etudientImpl.retrieveEtudiant(id);
     }
 
@@ -71,5 +71,5 @@ public class EtudientRESTcontroller {
     @Operation(description = "modifier etudiant ")
     @PutMapping("/update")
     public Etudiant updateEtudiant(@RequestBody Etudiant etudiant){
-        return etudientImpl.addOrupdateEtudiant(etudiant);   }
+        return etudientImpl.updateEtudiant(etudiant);   }
 }

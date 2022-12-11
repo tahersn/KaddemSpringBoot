@@ -1,5 +1,6 @@
 package tn.esprit.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,4 +24,7 @@ public class Departement {
 private String nomDepart;
 @OneToMany(cascade = CascadeType.ALL,mappedBy = "departement")
     private Set<Etudiant> etudiants;
+    @JsonIgnore
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE},mappedBy = "departement")
+    private Set<Employe> employees;
 }
