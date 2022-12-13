@@ -53,9 +53,9 @@ public class DepartementRESTcontroller {
     @Operation(description = "Supprimer un departement ")
 
     @DeleteMapping("delete/{id}")
-    public String deleteDepartement (@PathVariable("id") Long id ){
+    public void deleteDepartement (@PathVariable("id") Long id ){
         departementImpl.DeleteDepartement(id);
-        return "Deleted successfully";
+        
     }
 
     @PutMapping("/assign/{idE}/{idDep}")
