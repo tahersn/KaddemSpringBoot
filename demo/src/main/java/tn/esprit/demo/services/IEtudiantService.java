@@ -9,8 +9,7 @@ import java.util.List;
 public interface IEtudiantService {
 
 
-    public Etudiant addEtudiant(Etudiant etudiant);
-    public Etudiant updateEtudiant(Etudiant etudiant);
+    public Etudiant addOrUpdateEtudiant(Etudiant etudiant);
 
     List<Etudiant>  retrieveAllStudents ();
     public void removeEtudiant(Long id);

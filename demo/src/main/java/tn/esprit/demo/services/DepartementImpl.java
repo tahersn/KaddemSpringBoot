@@ -69,7 +69,7 @@ public class DepartementImpl implements IDepartementService{
         Etudiant etudiant = etudientService.retrieveEtudiant(idEtudient);
         Departement departement = RetrieveDepartement(idDepartement);
         etudiant.setDepartement(departement);
-        etudientService.addEtudiant(etudiant);
+        etudientService.addOrUpdateEtudiant(etudiant);
     }
     @Override
     public void affecterEmployee (Integer idEmp,Long idDepartement){

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Tag(name="gestion des etudients ")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 @RestController
 @RequestMapping("/student")
 @RequiredArgsConstructor
@@ -24,7 +24,7 @@ public class EtudientRESTcontroller {
     @Operation(description = "Ajouter un etudient")
     @PostMapping ("/add")
     public Etudiant AddStudent(@RequestBody Etudiant etudiant){
-        return etudientImpl.addEtudiant(etudiant);
+        return etudientImpl.addOrUpdateEtudiant(etudiant);
     }
 
     @Operation(description = "Afficheer un etudient par son ID")
@@ -76,7 +76,7 @@ public class EtudientRESTcontroller {
 
     @PutMapping("/update")
     public Etudiant updateStudent (@RequestBody Etudiant etudiant){
-        return  etudientImpl.addOrupdateEtudiant(etudiant);
+        return  etudientImpl.addOrUpdateEtudiant(etudiant);
     }
     @GetMapping("/")
     @ResponseBody
