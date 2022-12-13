@@ -37,5 +37,9 @@ public class Etudiant implements Serializable {
     @JsonIgnore
      Departement departement;
 
+    @ManyToMany( cascade = CascadeType.PERSIST)
+    @JsonIgnore
+    Set<Competence>Competences;
+
 
 }

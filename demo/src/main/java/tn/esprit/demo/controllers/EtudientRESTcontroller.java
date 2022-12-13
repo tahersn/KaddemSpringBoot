@@ -5,9 +5,11 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.demo.entities.Competence;
 import tn.esprit.demo.entities.Etudiant;
 import tn.esprit.demo.services.IEtudiantService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Tag(name="gestion des etudients ")
@@ -46,9 +48,8 @@ public class EtudientRESTcontroller {
 
     @Operation(description = "Delete Student")
     @DeleteMapping("/delete/{id}")
-    public  String DeleteEtudiant(@PathVariable("id") Long id) {
+    public  void DeleteEtudiant(@PathVariable("id") Long id) {
         etudientImpl.removeEtudiant(id);
-        return ("deleted succesfuly");
     }
 
      @Operation(description = "Afficher la liste des etudients ")
@@ -68,8 +69,43 @@ public class EtudientRESTcontroller {
                Etudiant e=etudientImpl.findByPrenomEAndNomE(nomE,prenomE);
         return e;
     }
-    @Operation(description = "modifier etudiant ")
+    @PutMapping("/assignC/{idE}/{idC}")
+    public void AddAndAssignCompetence(@PathVariable("idE")Long idE, @PathVariable("idC") Long idC){
+         etudientImpl.AssignCompetenceToStudent(idE,idC);
+    }
+
     @PutMapping("/update")
-    public Etudiant updateEtudiant(@RequestBody Etudiant etudiant){
-        return etudientImpl.updateEtudiant(etudiant);   }
+    public Etudiant updateStudent (@RequestBody Etudiant etudiant){
+        return  etudientImpl.addOrupdateEtudiant(etudiant);
+    }
+    @GetMapping("/")
+    @ResponseBody
+    public List<Etudiant> get(
+            @RequestParam(required = false) Long idE,
+            @RequestParam(required = false) String prenomE,
+            @RequestParam(required = false) String nomE,
+            @RequestParam(required = false) String option
+    ) {
+
+        List<Etudiant> students = new ArrayList<Etudiant>();
+
+        if (idE != null) {
+            students.add(etudientImpl.retrieveEtudiant(idE));
+            return students;
+        }
+        if (prenomE != null || nomE != null || option != null ) {
+            students = etudientImpl.getBy(prenomE, nomE, option);
+            return students;
+        }
+
+        students = etudientImpl.retrieveAllStudents();
+        return students;
+    }
+
+    @GetMapping("/getAllDesc")
+    public List<Etudiant> getAllOrderBy(){
+        return etudientImpl.getAllOrderByIddesc();
+    }
+
+
 }

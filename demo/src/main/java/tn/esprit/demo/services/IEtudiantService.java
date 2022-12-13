@@ -1,5 +1,6 @@
 package tn.esprit.demo.services;
 
+import tn.esprit.demo.entities.Competence;
 import tn.esprit.demo.entities.Contrat;
 import tn.esprit.demo.entities.Etudiant;
 
@@ -21,6 +22,9 @@ public interface IEtudiantService {
     Etudiant findByPrenomE(String pre);
     Etudiant findByPrenomEAndNomE ( String nomE, String prenomE);
     List<Etudiant> findByDepartement_IdDepart(Long idDepart);
+   void AssignCompetenceToStudent(Long idE, Long idC);
+    public List<Etudiant> getBy(String prenomE, String nomE, String option);
 
+    List<Etudiant> getAllOrderByIddesc();
 
 }
