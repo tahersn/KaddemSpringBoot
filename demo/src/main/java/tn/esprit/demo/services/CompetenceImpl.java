@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.demo.entities.Competence;
 import tn.esprit.demo.entities.Etudiant;
+import tn.esprit.demo.entities.NiveauCompetence;
+import tn.esprit.demo.entities.Type;
 import tn.esprit.demo.repositories.ICompetenceRepository;
 import tn.esprit.demo.repositories.IEtudRepository;
 
@@ -49,6 +51,12 @@ public class CompetenceImpl implements ICompetenceService {
             etudiantRepository.save(e);
         }
         return competenceRepository.save(c);
+    }
+
+    @Override
+    public Competence finBYArgs(String nomCompetence, Type type, NiveauCompetence NiveauC) {
+
+        return (Competence) competenceRepository.findByArgs(nomCompetence,type,NiveauC);
     }
 
 

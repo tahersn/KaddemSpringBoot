@@ -9,6 +9,7 @@ import tn.esprit.demo.entities.Competence;
 import tn.esprit.demo.entities.Etudiant;
 import tn.esprit.demo.services.IEtudiantService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Tag(name="gestion des etudients ")
@@ -76,6 +77,34 @@ public class EtudientRESTcontroller {
     @PutMapping("/update")
     public Etudiant updateStudent (@RequestBody Etudiant etudiant){
         return  etudientImpl.addOrupdateEtudiant(etudiant);
+    }
+    @GetMapping("/")
+    @ResponseBody
+    public List<Etudiant> get(
+            @RequestParam(required = false) Long idE,
+            @RequestParam(required = false) String prenomE,
+            @RequestParam(required = false) String nomE,
+            @RequestParam(required = false) String option
+    ) {
+
+        List<Etudiant> students = new ArrayList<Etudiant>();
+
+        if (idE != null) {
+            students.add(etudientImpl.retrieveEtudiant(idE));
+            return students;
+        }
+        if (prenomE != null || nomE != null || option != null ) {
+            students = etudientImpl.getBy(prenomE, nomE, option);
+            return students;
+        }
+
+        students = etudientImpl.retrieveAllStudents();
+        return students;
+    }
+
+    @GetMapping("/getAllDesc")
+    public List<Etudiant> getAllOrderBy(){
+        return etudientImpl.getAllOrderByIddesc();
     }
 
 

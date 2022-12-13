@@ -22,5 +22,8 @@ public interface IEtudiantService {
     Etudiant findByPrenomEAndNomE ( String nomE, String prenomE);
     List<Etudiant> findByDepartement_IdDepart(Long idDepart);
    void AssignCompetenceToStudent(Long idE, Long idC);
+    public List<Etudiant> getBy(String prenomE, String nomE, String option);
+
+    List<Etudiant> getAllOrderByIddesc();
 
 }

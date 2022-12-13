@@ -1,7 +1,6 @@
 package tn.esprit.demo.services;
 
-import tn.esprit.demo.entities.Competence;
-import tn.esprit.demo.entities.Etudiant;
+import tn.esprit.demo.entities.*;
 
 import java.util.List;
 
@@ -11,6 +10,7 @@ public interface ICompetenceService {
      Competence retrieveCompetenceById(Long idC);
      void deleteCompetenceById(Long idC);
      Competence addAndAssignStudentToCompetence ( Competence c);
+     Competence finBYArgs(String nomCompetence, Type type , NiveauCompetence NiveauC);
 
 
 

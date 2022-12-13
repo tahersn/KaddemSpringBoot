@@ -105,7 +105,15 @@ public class EtudiantImpl implements IEtudiantService {
 
     }
 
+    @Override
+    public List<Etudiant> getBy(String prenomE, String nomE, String option) {
+        return etudRepository.findByArgs(prenomE, nomE, option);
+    }
 
+    @Override
+    public List<Etudiant> getAllOrderByIddesc() {
+        return etudRepository.findByOrderByIdEtudiantDesc();
+    }
 
 
 }
