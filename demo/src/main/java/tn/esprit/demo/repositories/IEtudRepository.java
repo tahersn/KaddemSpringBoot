@@ -38,7 +38,7 @@ public interface IEtudRepository extends CrudRepository<Etudiant,Long> {
     public List<Etudiant> findByArgs(
             @Param("prenomE") String prenomE,
             @Param("nomE") String nomE,
-            @Param("option") String option
+            @Param("option") Option option
     );
 
 

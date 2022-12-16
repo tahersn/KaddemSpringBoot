@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.demo.entities.Competence;
 import tn.esprit.demo.entities.Etudiant;
+import tn.esprit.demo.entities.Option;
 import tn.esprit.demo.services.IEtudiantService;
 
 import java.util.ArrayList;
@@ -84,7 +85,7 @@ public class EtudientRESTcontroller {
             @RequestParam(required = false) Long idE,
             @RequestParam(required = false) String prenomE,
             @RequestParam(required = false) String nomE,
-            @RequestParam(required = false) String option
+            @RequestParam(required = false) Option option
     ) {
 
         List<Etudiant> students = new ArrayList<Etudiant>();

@@ -3,10 +3,7 @@ package tn.esprit.demo.services;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tn.esprit.demo.entities.Competence;
-import tn.esprit.demo.entities.Contrat;
-import tn.esprit.demo.entities.Equipe;
-import tn.esprit.demo.entities.Etudiant;
+import tn.esprit.demo.entities.*;
 import tn.esprit.demo.repositories.ICompetenceRepository;
 import tn.esprit.demo.repositories.IContratRepository;
 import tn.esprit.demo.repositories.IEquipeRepository;
@@ -106,7 +103,7 @@ public class EtudiantImpl implements IEtudiantService {
     }
 
     @Override
-    public List<Etudiant> getBy(String prenomE, String nomE, String option) {
+    public List<Etudiant> getBy(String prenomE, String nomE, Option option) {
         return etudRepository.findByArgs(prenomE, nomE, option);
     }
 
